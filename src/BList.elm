@@ -19,17 +19,17 @@ but maybe with some performance benefits.
 
 map : (a -> b) -> List a -> List b
 map f xs =
-    mapHelper f [] xs
+    mapHelper f xs []
 
 
-mapHelper : (a -> b) -> List b -> List a -> List b
-mapHelper f output input =
+mapHelper : (a -> b) -> List a -> List b -> List b
+mapHelper f input output =
     case input of
         [] ->
             List.reverse output
 
         x :: xs ->
-            mapHelper f (f x :: output) xs
+            mapHelper f xs (f x :: output)
 
 
 {-| Same as `map` but the function is also applied to the index of each
